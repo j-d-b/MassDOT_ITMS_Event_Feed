@@ -175,9 +175,11 @@
     <xs:element name="Point" type="locationPoint"/>
     <xs:element name="Range">
       <xs:complexType>
-        <xs:element name="Start" type="locationPoint"/>
-        <xs:element name="Waypoint" type="locationPoint" minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element name="End" type="locationPoint"/>
+        <xs:sequence>
+          <xs:element name="Start" type="locationPoint"/>
+          <xs:element name="Waypoint" type="locationPoint" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="End" type="locationPoint"/>
+        </xs:sequence>
       </xs:complexType>
     </xs:element>
     <xs:element name="Area">
@@ -189,7 +191,6 @@
       </xs:complexType>
     </xs:element>
   </xs:choice>
-  <xs:attribute name="location-type" type="" use="required"/>
 </xs:complexType>
 
 <!-- lane configuration info -->
