@@ -1,4 +1,3 @@
-
 <?xml version="1.0"?>
 <xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -9,7 +8,6 @@
 <!-- simple types -->
 <xs:simpleType name="incidentStatus">
   <xs:restriction base="xs:string">
-    <xs:enumeration value="UNCONFIRMED"/>
     <xs:enumeration value="ACTIVE"/>
     <xs:enumeration value="FUTURE"/>
     <xs:enumeration value="TERMINATED"/>
@@ -110,7 +108,9 @@
   </xs:restriction>
 </xs:simpleType>
 
+
 <!-- complex types -->
+<!-- location -->
 <xs:complexType name="latlon">
   <xs:sequence>
     <xs:element name="Latitude">
@@ -161,16 +161,16 @@
   <xs:attribute name="location-type" type="" use="required"/>
 </xs:complexType>
 
+<!-- base event -->
 <xs:complexType name="event">
   <xs:sequence>
     <xs:element name="Name" type="xs:string"/>
-    <xs:element name="Description" type="xs:string"/>
     <xs:element name="CreatedAt" type="xs:dateTime"/>
     <xs:element name="ConfirmedAt" type="xs:dateTime"/>
     <xs:element name="StartDate" type="xs:dateTime"/>
     <xs:element name="Status" type="incidentStatus"/>
     <xs:element name="Location" type="eventLocation"/>
-    <xs:element name="LaneBlockage">
+    <xs:element name="LaneInfo">
       <xs:complexType>
         <xs:sequence>
           <xs:element name="Direction" type="xs:string"/>
@@ -181,12 +181,13 @@
   </xs:sequence>
 </xs:complexType>
 
+<!-- planned event -->
 <xs:complexType name="plannedEventSubtype">
   <xs:attribute name="event-type" type="plannedEventType"/>
 </xs:complexType>
 
-<xs:complexType name="plannedEventSubtypeDetails">
-  <xs:attribute name="event-subtype" type="specialEventType"/>
+<xs:complexType name="plannedEventSpecialEventCharacteristics">
+  <xs:attribute name="special-event-type" type="specialEventType"/>
 </xs:complexType>
 
 <xs:complexType name="plannedEvent">
@@ -194,19 +195,50 @@
     <xs:extension base="event">
       <xs:sequence>
         <xs:element name="Type" type="plannedEventType"/>
-        <xs:element name="Subtype" type="plannedEventSubtype">
+        <xs:element name="Subtype" type="plannedEventSubtype"> <!-- type just adds the `event-type` attribute -->
           <xs:alternative test="@event-type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceType"/>
           <xs:alternative test="@event-type = 'SPECIAL_EVENT'" type="specialEventType"/>
         </xs:element>
-        <xs:element name="SubtypeDetails" type="plannedEventSubtypeDetails" minOccurs="0"> <!-- only further subsubtypes for special events -->
-          <xs:alternative test="@event-subtype = 'STADIUM/ARENA_EVENT'" type="stadiumArenaEventType"/>
-          <xs:alternative test="@event-subtype = 'OUTDOOR_EVENT'" type="outdoorEventType"/>
-          <xs:alternative test="@event-subtype = 'ATHLETIC_EVENT'" type="athleticEventType"/>
+        <xs:element name="SpecialEventCharacteristics" type="plannedEventSpecialEventCharacteristics" minOccurs="0"> <!-- type just adds the `special-event-type` attribute -->
+          <xs:alternative test="@special-event-type = 'STADIUM/ARENA_EVENT'" type="stadiumArenaEventType"/>
+          <xs:alternative test="@special-event-type = 'OUTDOOR_EVENT'" type="outdoorEventType"/>
+          <xs:alternative test="@special-event-type = 'ATHLETIC_EVENT'" type="athleticEventType"/>
         </xs:element>
-        <xs:element name="ExpectedDuration" type="string"/> <!-- string, but will be "1 day"...etc. -->
       </xs:sequence>
     </xs:extension>
   </xs:complexContent>
+</xs:complexType>
+
+<!-- unplanned event -->
+<xs:complexType name="advisoryWatchWarningCharacteristics">
+  <xs:sequence>
+    <xs:element name="ID" type="xs:integer"/> <!-- TODO: who knows what this is? -->
+    <xs:element name="Category">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumerable value="ADVISORY"/>
+          <xs:enumerable value="WATCH"/>
+          <xs:enumerable value="WARNING"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:element>
+    <xs:element name="Event" type="xs:string"/>
+    <xs:element name="Location" maxOccurs="unbounded"/>  <!-- county name, 'STATEWIDE', or many county names -->
+    <xs:element name="StartDate" type="xs:dateTime"/>
+    <xs:element name="EndDate" type="xs:dateTime"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="unplannedEventSubtype">
+  <xs:attribute name="event-type" type="unplannedEventType"/>
+</xs:complexType>
+
+<xs:complexType name="unplannedEventCharacteristics">
+  <xs:attribute name="event-subtype">
+    <xs:simpleType>
+      <xs:union memberTypes="actsOfNatureType roadwayTrafficType"/>
+    </xs:simpleType>
+  </xs:attribute>
 </xs:complexType>
 
 <xs:complexType name="unplannedEvent">
@@ -214,16 +246,16 @@
     <xs:extension base="event">
       <xs:sequence>
         <xs:element name="Type" type="unplannedEventType"/>
-        <xs:element name="Subtype" type="plannedEventSubtype">
-          <xs:alternative test="@event-type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceType"/>
-          <xs:alternative test="@event-type = 'SPECIAL_EVENT'" type="specialEventType"/>
+        <xs:element name="Subtype" type="unplannedEventSubtype"> <!-- type just adds the `event-type` attribute -->
+          <xs:alternative test="@event-type = 'ROADWAY/TRAFFIC'" type="roadwayTrafficType"/>
+          <xs:alternative test="@event-type = 'ACTS_OF_NATURE'" type="actsOfNatureType"/>
         </xs:element>
-        <xs:element name="SubtypeDetails" type="plannedEventSubtypeDetails" minOccurs="0"> <!-- only further subsubtypes for special events -->
-          <xs:alternative test="@event-subtype = 'STADIUM/ARENA_EVENT'" type="stadiumArenaEventType"/>
-          <xs:alternative test="@event-subtype = 'OUTDOOR_EVENT'" type="outdoorEventType"/>
-          <xs:alternative test="@event-subtype = 'ATHLETIC_EVENT'" type="athleticEventType"/>
+        <xs:element name="Characteristics" type="unplannedEventCharacteristics" minOccurs="0">
+          <xs:alternative test="@event-subtype = 'ADVISORY/WATCH/WARNING'" type="advisoryWatchWarningCharacteristics"/>
+          <xs:alternative test="@event-subtype = 'FIRE'" type="outdoorEventType"/>
+          <xs:alternative test="@event-subtype = 'ROADWAY_DAMAGE'" type=""/>
+          <xs:alternative test="@event-subtype = 'ROADWAY_OBSTRUCTION'" type=""/>
         </xs:element>
-        <xs:element name="ExpectedDuration" type="string"/> <!-- string, but will be "1 day"...etc. -->
       </xs:sequence>
     </xs:extension>
   </xs:complexContent>
