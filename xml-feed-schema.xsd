@@ -5,7 +5,7 @@
   vc:minVersion="1.1"
 >
 
-<!-- simple types -->
+<!-- ENUMS (SIMPLE TYPES) -->
 <xs:simpleType name="incidentStatus">
   <xs:restriction base="xs:string">
     <xs:enumeration value="ACTIVE"/>
@@ -101,6 +101,37 @@
   </xs:restriction>
 </xs:simpleType>
 
+<xs:simpleType name="roadwayTrafficFireSubtype">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="VEHICLE_FIRE"/>
+    <xs:enumeration value="FACILITY_FIRE_AFFECTING_ROADWAY"/>
+    <xs:enumeration value="BRUSH/FOREST_FIRE"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="roadwayTrafficRoadwayDamageSubtype">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="STORM_DAMAGE"/>
+    <xs:enumeration value="ROAD_SURFACE_COLLAPSE"/>
+    <xs:enumeration value="POTHOLE"/>
+    <xs:enumeration value="WATER_DAMAGE"/>
+    <xs:enumeration value="SEWER_DAMAGE"/>
+    <xs:enumeration value="GAS_LEAK"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="roadwayTrafficRoadwayObstructionSubtype">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="FALLEN_TREES"/>
+    <xs:enumeration value="DOWNED_SIGN"/>
+    <xs:enumeration value="DOWNED_UTILITY_POLE"/>
+    <xs:enumeration value="DOWNED_POWER_LINE"/>
+    <xs:enumeration value="DOWNED_CABLES"/>
+    <xs:enumeration value="CRASH_INVESTIGATION_WORK"/>
+    <xs:enumeration value="GENERAL_OBSTRUCTION/DEBRIS"/>
+  </xs:restriction>
+</xs:simpleType>
+
 <xs:simpleType name="actsOfNatureType">
   <xs:restriction base="xs:string">
     <xs:enumeration value="LOCALIZED_EVENT"/>
@@ -109,7 +140,7 @@
 </xs:simpleType>
 
 
-<!-- complex types -->
+<!-- COMPLEX TYPES -->
 <!-- location -->
 <xs:complexType name="latlon">
   <xs:sequence>
@@ -161,6 +192,14 @@
   <xs:attribute name="location-type" type="" use="required"/>
 </xs:complexType>
 
+<!-- lane configuration info -->
+<xs:complexType name="laneInfo">
+  <xs:sequence>
+    <xs:element name="Direction" type="xs:string"/>
+    <xs:element name="LanesAffected" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType>
+
 <!-- base event -->
 <xs:complexType name="event">
   <xs:sequence>
@@ -170,14 +209,7 @@
     <xs:element name="StartDate" type="xs:dateTime"/>
     <xs:element name="Status" type="incidentStatus"/>
     <xs:element name="Location" type="eventLocation"/>
-    <xs:element name="LaneInfo">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element name="Direction" type="xs:string"/>
-          <xs:element name="LanesBlocked" type="xs:string"/>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
+    <xs:element name="LaneInfo" type="laneInfo" minOccurs="0"/>
   </xs:sequence>
 </xs:complexType>
 
@@ -229,6 +261,14 @@
   </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="roadwayTrafficCharacteristics">
+  <xs:sequence>
+    <xs:element name="HasSpeedRestriction" type="xs:boolean"/>
+    <xs:element name="IsWithinWorkZone" type="xs:boolean"/>
+    <xs:element name="IsBoreClosureRequired" type="xs:boolean"/>
+  </xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="unplannedEventSubtype">
   <xs:attribute name="event-type" type="unplannedEventType"/>
 </xs:complexType>
@@ -252,9 +292,36 @@
         </xs:element>
         <xs:element name="Characteristics" type="unplannedEventCharacteristics" minOccurs="0">
           <xs:alternative test="@event-subtype = 'ADVISORY/WATCH/WARNING'" type="advisoryWatchWarningCharacteristics"/>
-          <xs:alternative test="@event-subtype = 'FIRE'" type="outdoorEventType"/>
-          <xs:alternative test="@event-subtype = 'ROADWAY_DAMAGE'" type=""/>
-          <xs:alternative test="@event-subtype = 'ROADWAY_OBSTRUCTION'" type=""/>
+          <xs:alternative test="@event-subtype = 'FIRE'">
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="roadwayTrafficCharacterstics">
+                  <xs:element name="Subtype" type="roadwayTrafficFireSubtype"/>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:alternative>
+          <xs:alternative test="@event-subtype = 'ROADWAY_DAMAGE'">
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="roadwayTrafficCharacterstics">
+                  <xs:element name="Subtype" type="roadwayTrafficRoadwayDamageSubtype"/>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:alternative>
+          <xs:alternative test="@event-subtype = 'ROADWAY_OBSTRUCTION'">
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="roadwayTrafficCharacterstics">
+                  <xs:element name="Subtype" type="roadwayTrafficRoadwayObstructionSubtype"/>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:alternative>
+          <xs:alternative test="@event-subtype = 'CONGESTION'" type="roadwayTrafficCharacteristics"/>
+          <xs:alternative test="@event-subtype = 'CRASH'" type="roadwayTrafficCharacteristics"/>
+          <xs:alternative test="@event-subtype = 'DISABLED_MOTOR_VEHICLE'" type="roadwayTrafficCharacteristics"/>
         </xs:element>
       </xs:sequence>
     </xs:extension>
@@ -269,7 +336,8 @@
   </xs:choice>
 </xs:complexType>
 
-<!-- root element -->
+
+<!-- ROOT ELEMENT -->
 <xs:element name="EventsFeed">
   <xs:complexType>
     <xs:sequence>
