@@ -249,9 +249,9 @@
     <xs:element name="Category">
       <xs:simpleType>
         <xs:restriction base="xs:string">
-          <xs:enumerable value="ADVISORY"/>
-          <xs:enumerable value="WATCH"/>
-          <xs:enumerable value="WARNING"/>
+          <xs:enumeration value="ADVISORY"/>
+          <xs:enumeration value="WATCH"/>
+          <xs:enumeration value="WARNING"/>
         </xs:restriction>
       </xs:simpleType>
     </xs:element>
