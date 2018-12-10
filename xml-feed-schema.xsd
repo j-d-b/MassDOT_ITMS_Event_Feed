@@ -5,7 +5,10 @@
   vc:minVersion="1.1"
 >
 
+<!-- ~~~~~~~~~~~~~~~~~~~~ -->
 <!-- ENUMS (SIMPLE TYPES) -->
+<!-- ~~~~~~~~~~~~~~~~~~~~ -->
+<!-- general -->
 <xs:simpleType name="incidentStatus">
   <xs:restriction base="xs:string">
     <xs:enumeration value="ACTIVE"/>
@@ -139,8 +142,9 @@
   </xs:restriction>
 </xs:simpleType>
 
-
+<!-- ~~~~~~~~~~~~~ -->
 <!-- COMPLEX TYPES -->
+<!-- ~~~~~~~~~~~~~ -->
 <!-- location -->
 <xs:complexType name="latlon">
   <xs:sequence>
@@ -208,19 +212,19 @@
     <xs:element name="CreatedAt" type="xs:dateTime"/>
     <xs:element name="ConfirmedAt" type="xs:dateTime"/>
     <xs:element name="StartDate" type="xs:dateTime"/>
-    <xs:element name="Status" type="incidentStatus"/>
     <xs:element name="Location" type="eventLocation"/>
+    <xs:element name="Status" type="incidentStatus"/>
     <xs:element name="LaneInfo" type="laneInfo" minOccurs="0"/>
   </xs:sequence>
 </xs:complexType>
 
 <!-- planned event -->
 <xs:complexType name="plannedEventSubtype">
-  <xs:attribute name="event-type" type="plannedEventType"/>
+  <xs:attribute name="event-type" type="plannedEventType" use="required"/>
 </xs:complexType>
 
 <xs:complexType name="plannedEventSpecialEventCharacteristics">
-  <xs:attribute name="special-event-type" type="specialEventType"/>
+  <xs:attribute name="special-event-type" type="specialEventType" use="required"/>
 </xs:complexType>
 
 <xs:complexType name="plannedEvent">
@@ -245,7 +249,7 @@
 <!-- unplanned event -->
 <xs:complexType name="advisoryWatchWarningCharacteristics">
   <xs:sequence>
-    <xs:element name="ID" type="xs:integer"/> <!-- TODO: who knows what this is? -->
+    <xs:element name="ID" type="xs:integer"/> <!-- TODO ensure this is described in the docs -->
     <xs:element name="Category">
       <xs:simpleType>
         <xs:restriction base="xs:string">
@@ -255,10 +259,10 @@
         </xs:restriction>
       </xs:simpleType>
     </xs:element>
-    <xs:element name="Event" type="xs:string"/>
+    <xs:element name="EventType" type="xs:string"/>
     <xs:element name="Location" maxOccurs="unbounded"/>  <!-- county name, 'STATEWIDE', or many county names -->
-    <xs:element name="StartDate" type="xs:dateTime"/>
-    <xs:element name="EndDate" type="xs:dateTime"/>
+    <xs:element name="StartDateTime" type="xs:dateTime"/>
+    <xs:element name="EndDateTime" type="xs:dateTime"/>
   </xs:sequence>
 </xs:complexType>
 
@@ -271,11 +275,11 @@
 </xs:complexType>
 
 <xs:complexType name="unplannedEventSubtype">
-  <xs:attribute name="event-type" type="unplannedEventType"/>
+  <xs:attribute name="event-type" type="unplannedEventType" use="required"/>
 </xs:complexType>
 
 <xs:complexType name="unplannedEventCharacteristics">
-  <xs:attribute name="event-subtype">
+  <xs:attribute name="event-subtype" use="required">
     <xs:simpleType>
       <xs:union memberTypes="actsOfNatureType roadwayTrafficType"/>
     </xs:simpleType>
@@ -287,12 +291,15 @@
     <xs:extension base="event">
       <xs:sequence>
         <xs:element name="Type" type="unplannedEventType"/>
-        <xs:element name="Subtype" type="unplannedEventSubtype"> <!-- type just adds the `event-type` attribute -->
+        <xs:element name="Subtype" type="unplannedEventSubtype"> <!-- type just adds the`event-type` attribute -->
           <xs:alternative test="@event-type = 'ROADWAY/TRAFFIC'" type="roadwayTrafficType"/>
           <xs:alternative test="@event-type = 'ACTS_OF_NATURE'" type="actsOfNatureType"/>
         </xs:element>
-        <xs:element name="Characteristics" type="unplannedEventCharacteristics" minOccurs="0">
+        <xs:element name="Characteristics" type="unplannedEventCharacteristics" minOccurs="0"> <!-- type just adds the `event-subtype` attribute -->
           <xs:alternative test="@event-subtype = 'ADVISORY/WATCH/WARNING'" type="advisoryWatchWarningCharacteristics"/>
+          <xs:alternative test="@event-subtype = 'CONGESTION'" type="roadwayTrafficCharacteristics"/>
+          <xs:alternative test="@event-subtype = 'CRASH'" type="roadwayTrafficCharacteristics"/>
+          <xs:alternative test="@event-subtype = 'DISABLED_MOTOR_VEHICLE'" type="roadwayTrafficCharacteristics"/>
           <xs:alternative test="@event-subtype = 'FIRE'">
             <xs:complexType>
               <xs:simpleContent>
@@ -320,30 +327,27 @@
               </xs:simpleContent>
             </xs:complexType>
           </xs:alternative>
-          <xs:alternative test="@event-subtype = 'CONGESTION'" type="roadwayTrafficCharacteristics"/>
-          <xs:alternative test="@event-subtype = 'CRASH'" type="roadwayTrafficCharacteristics"/>
-          <xs:alternative test="@event-subtype = 'DISABLED_MOTOR_VEHICLE'" type="roadwayTrafficCharacteristics"/>
         </xs:element>
       </xs:sequence>
     </xs:extension>
   </xs:complexContent>
 </xs:complexType>
 
-<!-- events list -->
-<xs:complexType name="events">
-  <xs:choice>
-    <xs:element ref="PlannedEvent"/>
-    <xs:element ref="UnplannedEvent"/>
-  </xs:choice>
-</xs:complexType>
-
-
+<!-- ~~~~~~~~~~~~ -->
 <!-- ROOT ELEMENT -->
+<!-- ~~~~~~~~~~~~ -->
 <xs:element name="EventsFeed">
   <xs:complexType>
     <xs:sequence>
       <xs:element name="UpdateTimestamp" type="xs:dateTime"/>
-      <xs:element name="Events" type="events" maxOccurs="unbounded"/>
+      <xs:element name="Events">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="PlannedEvent" type="plannedEvent"/>
+            <xs:element name="UnplannedEvent" type="unplannedEvent"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
 </xs:element>
