@@ -239,6 +239,7 @@
   <xs:complexContent>
     <xs:extension base="event">
       <xs:sequence>
+        <xs:element name="EndDate" type="xs:dateTime"/>
         <xs:element name="Type" type="plannedEventType"/>
         <xs:element name="Subtype" type="plannedEventSubtype"> <!-- type just adds the `event-type` attribute -->
           <xs:alternative test="@event-type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceType"/>
