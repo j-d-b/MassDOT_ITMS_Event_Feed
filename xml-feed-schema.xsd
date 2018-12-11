@@ -9,7 +9,7 @@
 <!-- ENUMS (SIMPLE TYPES) -->
 <!-- ~~~~~~~~~~~~~~~~~~~~ -->
 <!-- general -->
-<xs:simpleType name="incidentStatus">
+<xs:simpleType name="eventStatus">
   <xs:restriction base="xs:string">
     <xs:enumeration value="ACTIVE"/>
     <xs:enumeration value="FUTURE"/>
@@ -137,7 +137,7 @@
 
 <xs:simpleType name="actsOfNatureType">
   <xs:restriction base="xs:string">
-    <xs:enumeration value="LOCALIZED_EVENT"/>
+    <xs:enumeration value="LOCAL_WEATHER_EVENT"/>
     <xs:enumeration value="ADVISORY/WATCH/WARNING"/>
   </xs:restriction>
 </xs:simpleType>
@@ -189,8 +189,8 @@
     <xs:element name="Area">
       <xs:complexType>
         <xs:sequence>
-          <xs:element name="Type" type="areaEventType"/>
-          <xs:element name="Value" type="xs:string" maxOccurs="unbounded"/>
+          <xs:element name="AreaType" type="areaEventType"/>
+          <xs:element name="AreaValue" type="xs:string" maxOccurs="unbounded"/>
         </xs:sequence>
       </xs:complexType>
     </xs:element>
@@ -219,9 +219,10 @@
     <xs:element name="Name" type="xs:string"/>
     <xs:element name="CreatedAt" type="xs:dateTime"/>
     <xs:element name="ConfirmedAt" type="xs:dateTime"/>
+    <xs:element name="UpdatedAt" type="xs:dateTime"/>
     <xs:element name="StartDate" type="xs:dateTime"/>
     <xs:element name="Location" type="eventLocation"/>
-    <xs:element name="Status" type="incidentStatus"/>
+    <xs:element name="Status" type="eventStatus"/>
     <xs:element name="LaneInfo" type="laneInfo" minOccurs="0"/>
   </xs:sequence>
 </xs:complexType>
