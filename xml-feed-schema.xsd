@@ -308,7 +308,7 @@
     <xs:extension base="event">
       <xs:sequence>
         <xs:element name="Category" type="unplannedEventCategory"/>
-        <xs:element name="Type" type="unplannedEventType"> <!-- type just adds the`event-category` attribute --> TODO change to type
+        <xs:element name="Type" type="unplannedEventType"> <!-- type just adds the`event-category` attribute -->
           <xs:alternative test="@event-category = 'ROADWAY/TRAFFIC'" type="roadwayTrafficType"/>
           <xs:alternative test="@event-category = 'ACTS_OF_NATURE'" type="actsOfNatureType"/>
         </xs:element>
