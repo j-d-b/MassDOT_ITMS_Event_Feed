@@ -1,353 +1,341 @@
 <?xml version="1.0"?>
-<xs:schema
-  xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
-  vc:minVersion="1.1"
->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
 
-<!-- ~~~~~~~~~~~~~~~~~~~~ -->
-<!-- ENUMS (SIMPLE TYPES) -->
-<!-- ~~~~~~~~~~~~~~~~~~~~ -->
-<!-- general -->
-<xs:simpleType name="eventStatus">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="ACTIVE"/>
-    <xs:enumeration value="FUTURE"/>
-    <xs:enumeration value="TERMINATED"/>
-  </xs:restriction>
-</xs:simpleType>
+  <!-- ~~~~~~~~~~~~~~~~~~~~ -->
+  <!-- ENUMS (SIMPLE TYPES) -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~ -->
+  <!-- general -->
+  <xs:simpleType name="eventStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ACTIVE"/>
+      <xs:enumeration value="FUTURE"/>
+      <xs:enumeration value="TERMINATED"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<xs:simpleType name="areaEventType">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="TOWN"/>
-    <xs:enumeration value="COUNTY"/>
-    <xs:enumeration value="SUBDISTRICT"/>
-    <xs:enumeration value="DISTRICT"/>
-    <xs:enumeration value="STATEWIDE"/>
-  </xs:restriction>
-</xs:simpleType>
+  <xs:simpleType name="areaEventType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TOWN"/>
+      <xs:enumeration value="COUNTY"/>
+      <xs:enumeration value="SUBDISTRICT"/>
+      <xs:enumeration value="DISTRICT"/>
+      <xs:enumeration value="STATEWIDE"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<!-- planned event -->
-<xs:simpleType name="plannedEventType">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="CONSTRUCTION/MAINTENANCE"/>
-    <xs:enumeration value="SPECIAL_EVENT"/>
-  </xs:restriction>
-</xs:simpleType>
+  <!-- planned event -->
+  <xs:simpleType name="plannedEventType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CONSTRUCTION/MAINTENANCE"/>
+      <xs:enumeration value="SPECIAL_EVENT"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<xs:simpleType name="constructionMaintenanceType">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="ROADWAY_ACTIVITY"/>
-    <xs:enumeration value="BRIDGE_ACTIVITY"/>
-    <xs:enumeration value="TUNNEL_ACTIVITY"/>
-    <xs:enumeration value="FACILITY_ACTIVITY"/>
-    <xs:enumeration value="UTILITY_ACTIVITY"/>
-  </xs:restriction>
-</xs:simpleType>
+  <xs:simpleType name="constructionMaintenanceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ROADWAY_ACTIVITY"/>
+      <xs:enumeration value="BRIDGE_ACTIVITY"/>
+      <xs:enumeration value="TUNNEL_ACTIVITY"/>
+      <xs:enumeration value="FACILITY_ACTIVITY"/>
+      <xs:enumeration value="UTILITY_ACTIVITY"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<xs:simpleType name="specialEventType">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="STADIUM/ARENA_EVENT"/>
-    <xs:enumeration value="OUTDOOR_EVENT"/>
-    <xs:enumeration value="VIP_VISIT"/>
-    <xs:enumeration value="ATHLETIC_EVENT"/>
-    <xs:enumeration value="FUNERAL_PROCESSION"/>
-    <xs:enumeration value="TRAINING/DRILL"/>
-    <xs:enumeration value="OTHER"/>
-  </xs:restriction>
-</xs:simpleType>
+  <xs:simpleType name="specialEventType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="STADIUM/ARENA_EVENT"/>
+      <xs:enumeration value="OUTDOOR_EVENT"/>
+      <xs:enumeration value="VIP_VISIT"/>
+      <xs:enumeration value="ATHLETIC_EVENT"/>
+      <xs:enumeration value="FUNERAL_PROCESSION"/>
+      <xs:enumeration value="TRAINING/DRILL"/>
+      <xs:enumeration value="OTHER"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<xs:simpleType name="stadiumArenaEventType">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="PAVILLION_EVENT"/>
-    <xs:enumeration value="GILLETTE_STADIUM_EVENT"/>
-    <xs:enumeration value="BCEC_EVENT"/>
-    <xs:enumeration value="OTHER"/>
-  </xs:restriction>
-</xs:simpleType>
+  <xs:simpleType name="stadiumArenaEventType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PAVILLION_EVENT"/>
+      <xs:enumeration value="GILLETTE_STADIUM_EVENT"/>
+      <xs:enumeration value="BCEC_EVENT"/>
+      <xs:enumeration value="OTHER"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<xs:simpleType name="outdoorEventType">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="AIRSHOW"/>
-    <xs:enumeration value="FIREWORKS_DISPLAY"/>
-    <xs:enumeration value="MOVIE_FILMING"/>
-    <xs:enumeration value="GENERAL_OUTDOOR_EVENT"/>
-  </xs:restriction>
-</xs:simpleType>
+  <xs:simpleType name="outdoorEventType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AIRSHOW"/>
+      <xs:enumeration value="FIREWORKS_DISPLAY"/>
+      <xs:enumeration value="MOVIE_FILMING"/>
+      <xs:enumeration value="GENERAL_OUTDOOR_EVENT"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<xs:simpleType name="athleticEventType">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="MARATHON"/>
-    <xs:enumeration value="ROAD_RACE"/>
-    <xs:enumeration value="BIKE_RACE"/>
-    <xs:enumeration value="CHARITY_WALK"/>
-  </xs:restriction>
-</xs:simpleType>
+  <xs:simpleType name="athleticEventType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MARATHON"/>
+      <xs:enumeration value="ROAD_RACE"/>
+      <xs:enumeration value="BIKE_RACE"/>
+      <xs:enumeration value="CHARITY_WALK"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<!-- unplanned event -->
-<xs:simpleType name="unplannedEventCategory">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="ROADWAY/TRAFFIC"/>
-    <xs:enumeration value="ACTS_OF_NATURE"/>
-  </xs:restriction>
-</xs:simpleType>
+  <!-- unplanned event -->
+  <xs:simpleType name="unplannedEventCategory">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ROADWAY/TRAFFIC"/>
+      <xs:enumeration value="ACTS_OF_NATURE"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<xs:simpleType name="roadwayTrafficType">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="CRASH"/>
-    <xs:enumeration value="DISABLED_MOTOR_VEHICLE"/>
-    <xs:enumeration value="FIRE"/>
-    <xs:enumeration value="ROADWAY_DAMAGE"/>
-    <xs:enumeration value="ROADWAY_OBSTRUCTION"/>
-    <xs:enumeration value="CONGESTION"/>
-    <xs:enumeration value="GENERAL_ROADWAY/TRAFFIC"/>
-  </xs:restriction>
-</xs:simpleType>
+  <xs:simpleType name="roadwayTrafficType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CRASH"/>
+      <xs:enumeration value="DISABLED_MOTOR_VEHICLE"/>
+      <xs:enumeration value="FIRE"/>
+      <xs:enumeration value="ROADWAY_DAMAGE"/>
+      <xs:enumeration value="ROADWAY_OBSTRUCTION"/>
+      <xs:enumeration value="CONGESTION"/>
+      <xs:enumeration value="GENERAL_ROADWAY/TRAFFIC"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<xs:simpleType name="roadwayTrafficFireSubtype">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="VEHICLE_FIRE"/>
-    <xs:enumeration value="FACILITY_FIRE_AFFECTING_ROADWAY"/>
-    <xs:enumeration value="BRUSH/FOREST_FIRE"/>
-  </xs:restriction>
-</xs:simpleType>
+  <xs:simpleType name="roadwayTrafficFireSubtype">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="VEHICLE_FIRE"/>
+      <xs:enumeration value="FACILITY_FIRE_AFFECTING_ROADWAY"/>
+      <xs:enumeration value="BRUSH/FOREST_FIRE"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<xs:simpleType name="roadwayTrafficRoadwayDamageSubtype">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="STORM_DAMAGE"/>
-    <xs:enumeration value="ROAD_SURFACE_COLLAPSE"/>
-    <xs:enumeration value="POTHOLE"/>
-    <xs:enumeration value="WATER_DAMAGE"/>
-    <xs:enumeration value="SEWER_DAMAGE"/>
-    <xs:enumeration value="GAS_LEAK"/>
-  </xs:restriction>
-</xs:simpleType>
+  <xs:simpleType name="roadwayTrafficRoadwayDamageSubtype">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="STORM_DAMAGE"/>
+      <xs:enumeration value="ROAD_SURFACE_COLLAPSE"/>
+      <xs:enumeration value="POTHOLE"/>
+      <xs:enumeration value="WATER_DAMAGE"/>
+      <xs:enumeration value="SEWER_DAMAGE"/>
+      <xs:enumeration value="GAS_LEAK"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<xs:simpleType name="roadwayTrafficRoadwayObstructionSubtype">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="FALLEN_TREES"/>
-    <xs:enumeration value="DOWNED_SIGN"/>
-    <xs:enumeration value="DOWNED_UTILITY_POLE"/>
-    <xs:enumeration value="DOWNED_POWER_LINE"/>
-    <xs:enumeration value="DOWNED_CABLES"/>
-    <xs:enumeration value="CRASH_INVESTIGATION_WORK"/>
-    <xs:enumeration value="GENERAL_OBSTRUCTION/DEBRIS"/>
-  </xs:restriction>
-</xs:simpleType>
+  <xs:simpleType name="roadwayTrafficRoadwayObstructionSubtype">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FALLEN_TREES"/>
+      <xs:enumeration value="DOWNED_SIGN"/>
+      <xs:enumeration value="DOWNED_UTILITY_POLE"/>
+      <xs:enumeration value="DOWNED_POWER_LINE"/>
+      <xs:enumeration value="DOWNED_CABLES"/>
+      <xs:enumeration value="CRASH_INVESTIGATION_WORK"/>
+      <xs:enumeration value="GENERAL_OBSTRUCTION/DEBRIS"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<xs:simpleType name="actsOfNatureType">
-  <xs:restriction base="xs:string">
-    <xs:enumeration value="LOCAL_WEATHER_EVENT"/>
-    <xs:enumeration value="ADVISORY/WATCH/WARNING"/>
-  </xs:restriction>
-</xs:simpleType>
+  <xs:simpleType name="actsOfNatureType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LOCAL_WEATHER_EVENT"/>
+      <xs:enumeration value="ADVISORY/WATCH/WARNING"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-<!-- ~~~~~~~~~~~~~ -->
-<!-- COMPLEX TYPES -->
-<!-- ~~~~~~~~~~~~~ -->
-<!-- location -->
-<xs:complexType name="latlon">
-  <xs:sequence>
-    <xs:element name="Latitude">
-      <xs:simpleType>
-        <xs:restriction base="xs:decimal">
-          <xs:minInclusive value="-90"/>
-          <xs:maxInclusive value="90"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:element>
-    <xs:element name="Longitude">
-      <xs:simpleType>
-        <xs:restriction base="xs:decimal">
-          <xs:minInclusive value="-180"/>
-          <xs:maxInclusive value="180"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:element>
-  </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="locationPoint">
-  <xs:sequence>
-    <xs:element name="RoadwayName" type="xs:string"/>
-    <xs:element name="Coordinates" type="latlon"/>
-  </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="eventLocation">
-  <xs:choice>
-    <xs:element name="Point" type="locationPoint"/>
-    <xs:element name="Range">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element name="Start" type="locationPoint"/>
-          <xs:element name="Waypoint" type="locationPoint" minOccurs="0" maxOccurs="unbounded"/>
-          <xs:element name="End" type="locationPoint"/>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
-    <xs:element name="Area">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element name="AreaType" type="areaEventType"/>
-          <xs:element name="AreaValue" type="xs:string" maxOccurs="unbounded"/>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
-  </xs:choice>
-</xs:complexType>
-
-<!-- lane configuration info -->
-<xs:complexType name="laneInfo">
-  <xs:sequence>
-    <xs:element name="Direction" type="xs:string"/>
-    <xs:element name="LanesAffected" type="xs:string"/>
-  </xs:sequence>
-</xs:complexType>
-
-<!-- occurence -->
-<xs:complexType name="eventOccurence">
-  <xs:sequence>
-    <xs:element name="StartDateTime" type="xs:dateTime"/>
-    <xs:element name="EndDateTime" type="xs:dateTime"/>
-  </xs:sequence>
-</xs:complexType>
-
-<!-- base event -->
-<xs:complexType name="event">
-  <xs:sequence>
-    <xs:element name="Name" type="xs:string"/>
-    <xs:element name="CreatedAt" type="xs:dateTime"/>
-    <xs:element name="ConfirmedAt" type="xs:dateTime"/>
-    <xs:element name="UpdatedAt" type="xs:dateTime"/>
-    <xs:element name="StartDate" type="xs:dateTime"/>
-    <xs:element name="Location" type="eventLocation"/>
-    <xs:element name="Status" type="eventStatus"/>
-    <xs:element name="LaneInfo" type="laneInfo" minOccurs="0"/>
-  </xs:sequence>
-</xs:complexType>
-
-<!-- planned event -->
-<xs:complexType name="plannedEventSubtype">
-  <xs:attribute name="event-type" type="plannedEventType" use="required"/>
-</xs:complexType>
-
-<xs:complexType name="plannedEventSpecialEventCharacteristics">
-  <xs:attribute name="special-event-type" type="specialEventType" use="required"/>
-</xs:complexType>
-
-<xs:complexType name="plannedEvent">
-  <xs:complexContent>
-    <xs:extension base="event">
-      <xs:sequence>
-        <xs:element name="EndDate" type="xs:dateTime"/>
-        <xs:element name="Type" type="plannedEventType"/>
-        <xs:element name="Subtype" type="plannedEventSubtype"> <!-- type just adds the `event-type` attribute -->
-          <xs:alternative test="@event-type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceType"/>
-          <xs:alternative test="@event-type = 'SPECIAL_EVENT'" type="specialEventType"/>
-        </xs:element>
-        <xs:element name="SpecialEventCharacteristics" type="plannedEventSpecialEventCharacteristics" minOccurs="0"> <!-- type just adds the `special-event-type` attribute -->
-          <xs:alternative test="@special-event-type = 'STADIUM/ARENA_EVENT'" type="stadiumArenaEventType"/>
-          <xs:alternative test="@special-event-type = 'OUTDOOR_EVENT'" type="outdoorEventType"/>
-          <xs:alternative test="@special-event-type = 'ATHLETIC_EVENT'" type="athleticEventType"/>
-        </xs:element>
-        <xs:element name="Occurrences">
-          <xs:complexType>
-            <xs:sequence maxOccurs="20"> <!-- arbitrary cap -->
-              <xs:element name="Occurrence" type="eventOccurence"/>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<!-- unplanned event -->
-<xs:complexType name="advisoryWatchWarningCharacteristics">
-  <xs:sequence>
-    <xs:element name="ID" type="xs:integer"/> <!-- TODO ensure this is described in the docs -->
-    <xs:element name="Category">
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="ADVISORY"/>
-          <xs:enumeration value="WATCH"/>
-          <xs:enumeration value="WARNING"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:element>
-    <xs:element name="EventType" type="xs:string"/>
-    <xs:element name="Location" maxOccurs="unbounded"/>  <!-- county name, 'STATEWIDE', or many county names -->
-    <xs:element name="StartDateTime" type="xs:dateTime"/>
-    <xs:element name="EndDateTime" type="xs:dateTime"/>
-  </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="roadwayTrafficCharacteristics">
-  <xs:sequence>
-    <xs:element name="HasSpeedRestriction" type="xs:boolean"/>
-    <xs:element name="IsWithinWorkZone" type="xs:boolean"/>
-    <xs:element name="IsBoreClosureRequired" type="xs:boolean"/>
-  </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="unplannedEventType">
-  <xs:attribute name="event-category" type="unplannedEventCategory" use="required"/>
-</xs:complexType>
-
-<xs:complexType name="unplannedEventSubtype">
-  <xs:attribute name="event-type" use="required">
-    <xs:simpleType>
-      <xs:union memberTypes="actsOfNatureType roadwayTrafficType"/>
-    </xs:simpleType>
-  </xs:attribute>
-</xs:complexType>
-
-<xs:complexType name="unplannedEvent">
-  <xs:complexContent>
-    <xs:extension base="event">
-      <xs:sequence>
-        <xs:element name="Category" type="unplannedEventCategory"/>
-        <xs:element name="Type" type="unplannedEventType"> <!-- type just adds the`event-category` attribute -->
-          <xs:alternative test="@event-category = 'ROADWAY/TRAFFIC'" type="roadwayTrafficType"/>
-          <xs:alternative test="@event-category = 'ACTS_OF_NATURE'" type="actsOfNatureType"/>
-        </xs:element>
-        <xs:element name="Subtype" type="unplannedEventSubtype" minOccurs="0">
-          <xs:alternative test="@event-type = 'FIRE'" type="roadwayTrafficFireSubtype"/>
-          <xs:alternative test="@event-type = 'ROADWAY_DAMAGE'" type="roadwayTrafficRoadwayDamageSubtype"/>
-          <xs:alternative test="@event-type = 'ROADWAY_OBSTRUCTION'" type="roadwayTrafficRoadwayObstructionSubtype"/>
-        </xs:element>
-        <xs:element name="Characteristics" type="unplannedEventSubtype" minOccurs="0"> <!-- type just adds the `event-type` attribute -->
-          <xs:alternative test="@event-type = 'ADVISORY/WATCH/WARNING'" type="advisoryWatchWarningCharacteristics"/>
-          <xs:alternative test="@event-type = 'CONGESTION'" type="roadwayTrafficCharacteristics"/>
-          <xs:alternative test="@event-type = 'CRASH'" type="roadwayTrafficCharacteristics"/>
-          <xs:alternative test="@event-type = 'DISABLED_MOTOR_VEHICLE'" type="roadwayTrafficCharacteristics"/>
-          <xs:alternative test="@event-type = 'FIRE'" type="roadwayTrafficCharacteristics"/>
-          <xs:alternative test="@event-type = 'ROADWAY_DAMAGE'" type="roadwayTrafficCharacteristics"/>
-          <xs:alternative test="@event-type = 'ROADWAY_OBSTRUCTION'" type="roadwayTrafficCharacteristics"/>
-        </xs:element>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
-</xs:complexType>
-
-<!-- ~~~~~~~~~~~~ -->
-<!-- ROOT ELEMENT -->
-<!-- ~~~~~~~~~~~~ -->
-<xs:element name="EventsFeed">
-  <xs:complexType>
+  <!-- ~~~~~~~~~~~~~ -->
+  <!-- COMPLEX TYPES -->
+  <!-- ~~~~~~~~~~~~~ -->
+  <!-- location -->
+  <xs:complexType name="latlon">
     <xs:sequence>
-      <xs:element name="UpdateTimestamp" type="xs:dateTime"/>
-      <xs:element name="Events">
-        <xs:complexType>
-          <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="PlannedEvent" type="plannedEvent"/>
-            <xs:element name="UnplannedEvent" type="unplannedEvent"/>
-          </xs:choice>
-        </xs:complexType>
+      <xs:element name="Latitude">
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-90"/>
+            <xs:maxInclusive value="90"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Longitude">
+        <xs:simpleType>
+          <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-180"/>
+            <xs:maxInclusive value="180"/>
+          </xs:restriction>
+        </xs:simpleType>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-</xs:element>
+
+  <xs:complexType name="locationPoint">
+    <xs:sequence>
+      <xs:element name="RoadwayName" type="xs:string"/>
+      <xs:element name="Coordinates" type="latlon"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="eventLocation">
+    <xs:choice>
+      <xs:element name="Point" type="locationPoint"/>
+      <xs:element name="Range">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Start" type="locationPoint"/>
+            <xs:element name="Waypoint" type="locationPoint" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="End" type="locationPoint"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Area">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="AreaType" type="areaEventType"/>
+            <xs:element name="AreaValue" type="xs:string" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <!-- lane configuration info -->
+  <xs:complexType name="laneInfo">
+    <xs:sequence>
+      <xs:element name="Direction" type="xs:string"/>
+      <xs:element name="LanesAffected" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- occurence -->
+  <xs:complexType name="eventOccurence">
+    <xs:sequence>
+      <xs:element name="StartDateTime" type="xs:dateTime"/>
+      <xs:element name="EndDateTime" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- base event -->
+  <xs:complexType name="event">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string"/>
+      <xs:element name="CreatedAt" type="xs:dateTime"/>
+      <xs:element name="ConfirmedAt" type="xs:dateTime"/>
+      <xs:element name="UpdatedAt" type="xs:dateTime"/>
+      <xs:element name="StartDate" type="xs:dateTime"/>
+      <xs:element name="Location" type="eventLocation"/>
+      <xs:element name="Status" type="eventStatus"/>
+      <xs:element name="LaneInfo" type="laneInfo" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- planned event -->
+  <xs:complexType name="plannedEvent">
+    <xs:complexContent>
+      <xs:extension base="event">
+        <xs:sequence>
+          <xs:element name="EndDate" type="xs:dateTime"/>
+          <xs:element name="Type" type="plannedEventType"/>
+          <xs:element name="Subtype" type="xs:string">
+            <xs:alternative test="@event-type = 'CONSTRUCTION/MAINTENANCE'"
+              type="constructionMaintenanceType"/>
+            <xs:alternative test="@event-type = 'SPECIAL_EVENT'" type="specialEventType"/>
+          </xs:element>
+          <xs:element name="SpecialEventCharacteristics" type="xs:string" minOccurs="0">
+            <xs:alternative test="@special-event-type = 'STADIUM/ARENA_EVENT'" type="stadiumArenaEventType"/>
+            <xs:alternative test="@special-event-type = 'OUTDOOR_EVENT'" type="outdoorEventType"/>
+            <xs:alternative test="@special-event-type = 'ATHLETIC_EVENT'" type="athleticEventType"/>
+          </xs:element>
+          <xs:element name="Occurrences">
+            <xs:complexType>
+              <xs:sequence maxOccurs="20">
+                <!-- arbitrary cap -->
+                <xs:element name="Occurrence" type="eventOccurence"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="event-type" type="plannedEventType" use="required"/>
+        <xs:attribute name="special-event-type" type="specialEventType"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- unplanned event -->
+  <xs:complexType name="advisoryWatchWarningCharacteristics">
+    <xs:sequence>
+      <xs:element name="ID" type="xs:integer"/>
+      <!-- TODO ensure this is described in the docs -->
+      <xs:element name="Category">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="ADVISORY"/>
+            <xs:enumeration value="WATCH"/>
+            <xs:enumeration value="WARNING"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="EventType" type="xs:string"/>
+      <xs:element name="Location" maxOccurs="unbounded"/> <!-- county name, 'STATEWIDE', or many county names -->
+      <xs:element name="StartDateTime" type="xs:dateTime"/>
+      <xs:element name="EndDateTime" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="roadwayTrafficCharacteristics">
+    <xs:sequence>
+      <xs:element name="HasSpeedRestriction" type="xs:boolean"/>
+      <xs:element name="IsWithinWorkZone" type="xs:boolean"/>
+      <xs:element name="IsBoreClosureRequired" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="unplannedEvent">
+    <xs:complexContent>
+      <xs:extension base="event">
+        <xs:sequence>
+          <xs:element name="Category" type="unplannedEventCategory"/>
+          <xs:element name="Type" type="xs:string">
+            <xs:alternative test="@event-category = 'ROADWAY/TRAFFIC'" type="roadwayTrafficType"/>
+            <xs:alternative test="@event-category = 'ACTS_OF_NATURE'" type="actsOfNatureType"/>
+          </xs:element>
+          <xs:element name="Subtype" type="xs:string" minOccurs="0">
+            <xs:alternative test="@event-type = 'FIRE'" type="roadwayTrafficFireSubtype"/>
+            <xs:alternative test="@event-type = 'ROADWAY_DAMAGE'" type="roadwayTrafficRoadwayDamageSubtype"/>
+            <xs:alternative test="@event-type = 'ROADWAY_OBSTRUCTION'" type="roadwayTrafficRoadwayObstructionSubtype"/>
+          </xs:element>
+          <xs:element name="Characteristics" minOccurs="0">
+            <xs:alternative test="@event-type = 'ADVISORY/WATCH/WARNING'" type="advisoryWatchWarningCharacteristics"/>
+            <xs:alternative test="@event-type = 'CONGESTION'" type="roadwayTrafficCharacteristics"/>
+            <xs:alternative test="@event-type = 'CRASH'" type="roadwayTrafficCharacteristics"/>
+            <xs:alternative test="@event-type = 'DISABLED_MOTOR_VEHICLE'" type="roadwayTrafficCharacteristics"/>
+            <xs:alternative test="@event-type = 'FIRE'" type="roadwayTrafficCharacteristics"/>
+            <xs:alternative test="@event-type = 'ROADWAY_DAMAGE'" type="roadwayTrafficCharacteristics"/>
+            <xs:alternative test="@event-type = 'ROADWAY_OBSTRUCTION'" type="roadwayTrafficCharacteristics"/>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="event-category" type="unplannedEventCategory" use="required"/>
+        <xs:attribute name="event-type" use="required">
+          <xs:simpleType>
+            <xs:union memberTypes="actsOfNatureType roadwayTrafficType"/>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- ~~~~~~~~~~~~ -->
+  <!-- ROOT ELEMENT -->
+  <!-- ~~~~~~~~~~~~ -->
+  <xs:element name="EventsFeed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="UpdateTimestamp" type="xs:dateTime"/>
+        <xs:element name="Events">
+          <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="PlannedEvent" type="plannedEvent"/>
+              <xs:element name="UnplannedEvent" type="unplannedEvent"/>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 
 </xs:schema>
