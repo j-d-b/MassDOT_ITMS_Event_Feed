@@ -232,8 +232,7 @@
           <xs:element name="EndDate" type="xs:dateTime"/>
           <xs:element name="Type" type="plannedEventType"/>
           <xs:element name="Subtype" type="xs:string">
-            <xs:alternative test="@event-type = 'CONSTRUCTION/MAINTENANCE'"
-              type="constructionMaintenanceType"/>
+            <xs:alternative test="@event-type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceType"/>
             <xs:alternative test="@event-type = 'SPECIAL_EVENT'" type="specialEventType"/>
           </xs:element>
           <xs:element name="SpecialEventCharacteristics" type="xs:string" minOccurs="0">
@@ -243,8 +242,7 @@
           </xs:element>
           <xs:element name="Occurrences">
             <xs:complexType>
-              <xs:sequence maxOccurs="20">
-                <!-- arbitrary cap -->
+              <xs:sequence maxOccurs="20"> <!-- NOTE arbitrary cap -->
                 <xs:element name="Occurrence" type="eventOccurence"/>
               </xs:sequence>
             </xs:complexType>
@@ -259,8 +257,7 @@
   <!-- unplanned event -->
   <xs:complexType name="advisoryWatchWarningCharacteristics">
     <xs:sequence>
-      <xs:element name="ID" type="xs:integer"/>
-      <!-- TODO ensure this is described in the docs -->
+      <xs:element name="ID" type="xs:integer"/> <!-- ensure this is described in the docs -->
       <xs:element name="Category">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -284,7 +281,7 @@
       <xs:element name="IsBoreClosureRequired" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
-  
+
   <xs:complexType name="unplannedEvent">
     <xs:complexContent>
       <xs:extension base="event">
