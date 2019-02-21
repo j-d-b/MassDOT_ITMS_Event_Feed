@@ -225,7 +225,7 @@
 
   <!-- planned event -->
   <xs:complexType name="constructionMaintenanceSpecifics">
-    <xs:attribute name="subtype" type="constructionMaintenceType" use="required"/>
+    <xs:attribute name="subtype" type="constructionMaintenanceType" use="required"/>
   </xs:complexType>
 
   <xs:complexType name="specialEventSpecifics">

@@ -4,7 +4,7 @@
  xsi:noNamespaceSchemaLocation="file:/C:/Users/Jacob%20Brady/massdot-itms-events-feed/xml-feed-schema.xsd">
     <UpdateTimestamp>2006-05-04T18:13:51.0</UpdateTimestamp>
     <Events>
-        <PlannedEvent type="CONSTRUCTION/MAINTENANCE" special-event-type="STADIUM/ARENA_EVENT">
+        <PlannedEvent type="CONSTRUCTION/MAINTENANCE">
             <Name>Name0</Name>
             <CreatedAt>2006-05-04T18:13:51.0</CreatedAt>
             <ConfirmedAt>2006-05-04T18:13:51.0</ConfirmedAt>
@@ -25,9 +25,12 @@
                 <LanesAffected>LanesAffected0</LanesAffected>
             </LaneInfo>
             <EndDate>2006-05-04T18:13:51.0</EndDate>
-            <Subtype>ROADWAY_ACTIVITY</Subtype>
-            <SpecialEventCharacteristics>PAVILLION_EVENT</SpecialEventCharacteristics>
+            <TypeSpecific subtype="ROADWAY_ACTIVITY"/>
             <Occurrences>
+                <Occurrence>
+                    <StartDateTime>2006-05-04T18:13:51.0</StartDateTime>
+                    <EndDateTime>2006-05-04T18:13:51.0</EndDateTime>
+                </Occurrence>
                 <Occurrence>
                     <StartDateTime>2006-05-04T18:13:51.0</StartDateTime>
                     <EndDateTime>2006-05-04T18:13:51.0</EndDateTime>
@@ -38,8 +41,36 @@
                 </Occurrence>
             </Occurrences>
         </PlannedEvent>
-        <UnplannedEvent category="ROADWAY/TRAFFIC" type="LOCAL_WEATHER_EVENT">
+        <UnplannedEvent category="ROADWAY/TRAFFIC">
             <Name>Name1</Name>
+            <CreatedAt>2006-05-04T18:13:51.0</CreatedAt>
+            <ConfirmedAt>2006-05-04T18:13:51.0</ConfirmedAt>
+            <UpdatedAt>2006-05-04T18:13:51.0</UpdatedAt>
+            <StartDate>2006-05-04T18:13:51.0</StartDate>
+            <Location>
+                <Area>
+                    <AreaType>TOWN</AreaType>
+                    <AreaValue>AreaValue0</AreaValue>
+                    <AreaValue>AreaValue1</AreaValue>
+                    <AreaValue>AreaValue2</AreaValue>
+                </Area>
+            </Location>
+            <Status>ACTIVE</Status>
+            <LaneInfo>
+                <Direction>Direction1</Direction>
+                <LanesAffected>LanesAffected1</LanesAffected>
+            </LaneInfo>
+            <CategorySpecific type="CRASH">
+                <Subtype>VEHICLE_FIRE</Subtype>
+                <Characteristics>
+                    <HasSpeedRestriction>false</HasSpeedRestriction>
+                    <IsWithinWorkZone>false</IsWithinWorkZone>
+                    <IsBoreClosureRequired>false</IsBoreClosureRequired>
+                </Characteristics>
+            </CategorySpecific>
+        </UnplannedEvent>
+        <PlannedEvent type="CONSTRUCTION/MAINTENANCE">
+            <Name>Name2</Name>
             <CreatedAt>2006-05-04T18:13:51.0</CreatedAt>
             <ConfirmedAt>2006-05-04T18:13:51.0</ConfirmedAt>
             <UpdatedAt>2006-05-04T18:13:51.0</UpdatedAt>
@@ -55,23 +86,25 @@
             </Location>
             <Status>ACTIVE</Status>
             <LaneInfo>
-                <Direction>Direction1</Direction>
-                <LanesAffected>LanesAffected1</LanesAffected>
+                <Direction>Direction2</Direction>
+                <LanesAffected>LanesAffected2</LanesAffected>
             </LaneInfo>
-            <Category>ROADWAY/TRAFFIC</Category>
-            <Type>CRASH</Type>
-            <Subtype>VEHICLE_FIRE</Subtype>
-            <Characteristics>
-                <ID>0</ID>
-                <Category>ADVISORY</Category>
-                <EventType>EventType0</EventType>
-                <Location>
-                </Location>
-                <Location>
-                </Location>
-                <StartDateTime>2006-05-04T18:13:51.0</StartDateTime>
-                <EndDateTime>2006-05-04T18:13:51.0</EndDateTime>
-            </Characteristics>
-        </UnplannedEvent>
+            <EndDate>2006-05-04T18:13:51.0</EndDate>
+            <TypeSpecific subtype="ROADWAY_ACTIVITY"/>
+            <Occurrences>
+                <Occurrence>
+                    <StartDateTime>2006-05-04T18:13:51.0</StartDateTime>
+                    <EndDateTime>2006-05-04T18:13:51.0</EndDateTime>
+                </Occurrence>
+                <Occurrence>
+                    <StartDateTime>2006-05-04T18:13:51.0</StartDateTime>
+                    <EndDateTime>2006-05-04T18:13:51.0</EndDateTime>
+                </Occurrence>
+                <Occurrence>
+                    <StartDateTime>2006-05-04T18:13:51.0</StartDateTime>
+                    <EndDateTime>2006-05-04T18:13:51.0</EndDateTime>
+                </Occurrence>
+            </Occurrences>
+        </PlannedEvent>
     </Events>
 </EventsFeed>
