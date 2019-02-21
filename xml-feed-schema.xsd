@@ -224,20 +224,29 @@
   </xs:complexType>
 
   <!-- planned event -->
+  <xs:complexType name="constructionMaintenanceEvent">
+    <xs:attribute name="subtype" type="constructionMaintenceType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="specialEvent">
+    <xs:sequence>
+      <xs:element name="SpecialEventCharacteristics" type="xs:string" minOccurs="0">
+        <xs:alternative test="@subtype = 'STADIUM/ARENA_EVENT'" type="stadiumArenaEventType"/>
+        <xs:alternative test="@subtype = 'OUTDOOR_EVENT'" type="outdoorEventType"/>
+        <xs:alternative test="@subtype = 'ATHLETIC_EVENT'" type="athleticEventType"/>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="subtype" type="specialEventType" use="required"/>
+  </xs:complexType>
+
   <xs:complexType name="plannedEvent">
     <xs:complexContent>
       <xs:extension base="event">
         <xs:sequence>
           <xs:element name="EndDate" type="xs:dateTime"/>
-          <xs:element name="Type" type="plannedEventType"/>
-          <xs:element name="Subtype" type="xs:string">
-            <xs:alternative test="@event-type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceType"/>
-            <xs:alternative test="@event-type = 'SPECIAL_EVENT'" type="specialEventType"/>
-          </xs:element>
-          <xs:element name="SpecialEventCharacteristics" type="xs:string" minOccurs="0">
-            <xs:alternative test="@special-event-type = 'STADIUM/ARENA_EVENT'" type="stadiumArenaEventType"/>
-            <xs:alternative test="@special-event-type = 'OUTDOOR_EVENT'" type="outdoorEventType"/>
-            <xs:alternative test="@special-event-type = 'ATHLETIC_EVENT'" type="athleticEventType"/>
+          <xs:element name="Specifics">
+            <xs:alternative test="@type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceEvent"/>
+            <xs:alternative test="@type = 'SPECIAL_EVENT'" type="specialEvent"/>
           </xs:element>
           <xs:element name="Occurrences">
             <xs:complexType>
@@ -247,8 +256,7 @@
             </xs:complexType>
           </xs:element>
         </xs:sequence>
-        <xs:attribute name="event-type" type="plannedEventType" use="required"/>
-        <xs:attribute name="special-event-type" type="specialEventType"/>
+        <xs:attribute name="type" type="plannedEventType" use="required"/>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
