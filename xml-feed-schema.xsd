@@ -55,7 +55,7 @@
 
   <xs:simpleType name="stadiumArenaEventType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="PAVILLION_EVENT"/>
+      <xs:enumeration value="PAVILION_EVENT"/>
       <xs:enumeration value="GILLETTE_STADIUM_EVENT"/>
       <xs:enumeration value="BCEC_EVENT"/>
       <xs:enumeration value="OTHER"/>
