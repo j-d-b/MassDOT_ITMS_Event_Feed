@@ -224,11 +224,11 @@
   </xs:complexType>
 
   <!-- planned event -->
-  <xs:complexType name="constructionMaintenanceEvent">
+  <xs:complexType name="constructionMaintenanceSpecifics">
     <xs:attribute name="subtype" type="constructionMaintenceType" use="required"/>
   </xs:complexType>
 
-  <xs:complexType name="specialEvent">
+  <xs:complexType name="specialEventSpecifics">
     <xs:sequence>
       <xs:element name="SpecialEventCharacteristics" type="xs:string" minOccurs="0">
         <xs:alternative test="@subtype = 'STADIUM/ARENA_EVENT'" type="stadiumArenaEventType"/>
@@ -244,9 +244,9 @@
       <xs:extension base="event">
         <xs:sequence>
           <xs:element name="EndDate" type="xs:dateTime"/>
-          <xs:element name="Specifics">
-            <xs:alternative test="@type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceEvent"/>
-            <xs:alternative test="@type = 'SPECIAL_EVENT'" type="specialEvent"/>
+          <xs:element name="TypeSpecific">
+            <xs:alternative test="@type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceSpecifics"/>
+            <xs:alternative test="@type = 'SPECIAL_EVENT'" type="specialEventSpecifics"/>
           </xs:element>
           <xs:element name="Occurrences">
             <xs:complexType>
@@ -289,36 +289,35 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="roadwayTrafficSpecifics">
+    <xs:sequence>
+      <xs:element name="Subtype" type="xs:string">
+        <xs:alternative test="@type = 'FIRE'" type="roadwayTrafficFireSubtype"/>
+        <xs:alternative test="@type = 'ROADWAY_DAMAGE'" type="roadwayTrafficRoadwayDamageSubtype"/>
+        <xs:alternative test="@type = 'ROADWAY_OBSTRUCTION'" type="roadwayTrafficRoadwayObstructionSubtype"/>
+      </xs:element>
+      <xs:element name="Characteristics" type="roadwayTrafficCharacteristics" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="roadwayTrafficType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="actsOfNatureSpecifics">
+    <xs:sequence>
+      <xs:element name="Characteristics" type="advisoryWatchWarningCharacteristics" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="actsOfNatureType" use="required"/>
+  </xs:complexType>
+
   <xs:complexType name="unplannedEvent">
     <xs:complexContent>
       <xs:extension base="event">
         <xs:sequence>
-          <xs:element name="Category" type="unplannedEventCategory"/>
-          <xs:element name="Type" type="xs:string">
-            <xs:alternative test="@event-category = 'ROADWAY/TRAFFIC'" type="roadwayTrafficType"/>
-            <xs:alternative test="@event-category = 'ACTS_OF_NATURE'" type="actsOfNatureType"/>
-          </xs:element>
-          <xs:element name="Subtype" type="xs:string" minOccurs="0">
-            <xs:alternative test="@event-type = 'FIRE'" type="roadwayTrafficFireSubtype"/>
-            <xs:alternative test="@event-type = 'ROADWAY_DAMAGE'" type="roadwayTrafficRoadwayDamageSubtype"/>
-            <xs:alternative test="@event-type = 'ROADWAY_OBSTRUCTION'" type="roadwayTrafficRoadwayObstructionSubtype"/>
-          </xs:element>
-          <xs:element name="Characteristics" minOccurs="0">
-            <xs:alternative test="@event-type = 'ADVISORY/WATCH/WARNING'" type="advisoryWatchWarningCharacteristics"/>
-            <xs:alternative test="@event-type = 'CONGESTION'" type="roadwayTrafficCharacteristics"/>
-            <xs:alternative test="@event-type = 'CRASH'" type="roadwayTrafficCharacteristics"/>
-            <xs:alternative test="@event-type = 'DISABLED_MOTOR_VEHICLE'" type="roadwayTrafficCharacteristics"/>
-            <xs:alternative test="@event-type = 'FIRE'" type="roadwayTrafficCharacteristics"/>
-            <xs:alternative test="@event-type = 'ROADWAY_DAMAGE'" type="roadwayTrafficCharacteristics"/>
-            <xs:alternative test="@event-type = 'ROADWAY_OBSTRUCTION'" type="roadwayTrafficCharacteristics"/>
+          <xs:element name="CategorySpecific">
+            <xs:alternative test="@category = 'ROADWAY/TRAFFIC'" type="roadwayTrafficSpecifics"/>
+            <xs:alternative test="@category = 'ACTS_OF_NATURE'" type="actsOfNatureSpecifics"/>
           </xs:element>
         </xs:sequence>
-        <xs:attribute name="event-category" type="unplannedEventCategory" use="required"/>
-        <xs:attribute name="event-type" use="required">
-          <xs:simpleType>
-            <xs:union memberTypes="actsOfNatureType roadwayTrafficType"/>
-          </xs:simpleType>
-        </xs:attribute>
+        <xs:attribute name="category" type="unplannedEventCategory" use="required"/>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
