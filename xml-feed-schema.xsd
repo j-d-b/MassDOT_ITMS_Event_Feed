@@ -244,8 +244,10 @@
       <xs:extension base="event">
         <xs:sequence>
           <xs:element name="EndDate" type="xs:dateTime"/>
-          <xs:element name="Specifics">
+          <xs:element name="ConstructionMaintenanceEvent" minOccurs="0">
             <xs:alternative test="@type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceEvent"/>
+          </xs:element>
+          <xs:element name="SpecialEvent" minOccurs="0">
             <xs:alternative test="@type = 'SPECIAL_EVENT'" type="specialEvent"/>
           </xs:element>
           <xs:element name="Occurrences">
