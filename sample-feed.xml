@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<EventsFeed xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="file:/C:/Users/Jacob%20Brady/massdot-itms-events-feed/massdot-itms-events-feed.xsd">
+<EventsFeed xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <UpdateTimestamp>2006-05-04T18:13:51.0</UpdateTimestamp>
     <Events>
         <PlannedEvent type="CONSTRUCTION/MAINTENANCE">
