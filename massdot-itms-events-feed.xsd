@@ -177,12 +177,12 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
     <xs:sequence>
       <xs:element name="RoadwayName" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated;; should include dashes as appropriate (e.g. I-90, not I90) even if this is not indicated in the GIS data">Name of the roadway for the location including direction (e.g. I-93 NB).</xs:documentation>
+          <xs:documentation>Name of the roadway for the location including direction (e.g. I-93 NB).</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Coordinates" type="latlon">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated based on DSM-based user input">The coordinates of the start/end/decision point.</xs:documentation>
+          <xs:documentation>The coordinates of the start/end/decision point.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -192,28 +192,28 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
     <xs:choice>
       <xs:element name="Point" type="locationPoint">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated based on DSM-based user input">The location for a point event.</xs:documentation>
+          <xs:documentation>The location for a point event.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Range">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated based on DSM-based user input">The location for a range event.</xs:documentation>
+          <xs:documentation>The location for a range event.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
             <xs:element name="Start" type="locationPoint">
               <xs:annotation>
-                <xs:documentation source="DYNAC-generated based on DSM-based user input">The point on the roadway that indicates the beginning of the event.</xs:documentation>
+                <xs:documentation>The point on the roadway that indicates the beginning of the event.</xs:documentation>
               </xs:annotation>
             </xs:element>
             <xs:element name="Waypoint" type="locationPoint" minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
-                <xs:documentation source="DYNAC-generated based on DSM-based user input">A point on the roadway that indicates a waypoint.</xs:documentation>
+                <xs:documentation>A point on the roadway that indicates a waypoint.</xs:documentation>
               </xs:annotation>
             </xs:element>
             <xs:element name="End" type="locationPoint">
               <xs:annotation>
-                <xs:documentation source="DYNAC-generated based on DSM-based user input">The point on the roadway that indicates the end of the event.</xs:documentation>
+                <xs:documentation>The point on the roadway that indicates the end of the event.</xs:documentation>
               </xs:annotation>
             </xs:element>
           </xs:sequence>
@@ -221,18 +221,18 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
       </xs:element>
       <xs:element name="Area">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated based on DSM-based user input">The location for an area event.</xs:documentation>
+          <xs:documentation>The location for an area event.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
             <xs:element name="AreaType" type="areaEventType">
               <xs:annotation>
-                <xs:documentation source="DYNAC DSM-based user input">The type of area region impacted by an event.</xs:documentation>
+                <xs:documentation>The type of area region impacted by an event.</xs:documentation>
               </xs:annotation>
             </xs:element>
             <xs:element name="AreaValue" type="xs:string" maxOccurs="unbounded">
               <xs:annotation>
-                <xs:documentation source="DYNAC DSM-based user input">The name/value of the specific area (type indicated by AreaType) impacted by an event.</xs:documentation>
+                <xs:documentation>The name/value of the specific area (type indicated by AreaType) impacted by an event.</xs:documentation>
               </xs:annotation>
             </xs:element>
           </xs:sequence>
@@ -246,7 +246,7 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
     <xs:sequence>
       <xs:element name="Direction" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="DYNAC-based GIS information">The direction for each lane on the start roadway, including both direction of travel for bidirection roadways; e.g. NNN from three northbound lanes and SSSNNN for three southbound lanes and three northbound lanes. The convention is:
+          <xs:documentation>The direction for each lane on the start roadway, including both direction of travel for bidirection roadways; e.g. NNN from three northbound lanes and SSSNNN for three southbound lanes and three northbound lanes. The convention is:
 - For northbound lanes, the first letter indicates the leftmost travel lane, which is closest to the median;
 - For southbound lanes, the first letter indicates the rightmost lane, which is closest to entry and exit ramps;
 - For eastbound lanes, the first letter indicates the leftmost travel lane, which is closest to the median;
@@ -255,7 +255,7 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
       </xs:element>
       <xs:element name="LanesAffected" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">Lanes affected, where open lanes will be represented by X and closed lanes by O. For example, if the rightmost two lanes are closed, then the string will be OOOOXX.</xs:documentation>
+          <xs:documentation>Lanes affected, where open lanes will be represented by X and closed lanes by O. For example, if the rightmost two lanes are closed, then the string will be OOOOXX.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -266,12 +266,12 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
     <xs:sequence>
       <xs:element name="StartDateTime" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated based on DSM-based user input">The start Date/Time for the occurrence.</xs:documentation>
+          <xs:documentation>The start Date/Time for the occurrence.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="EndDateTime" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated based on DSM-based user input">The end Date/Time for the occurrence.</xs:documentation>
+          <xs:documentation>The end Date/Time for the occurrence.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -287,34 +287,32 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
       </xs:element>
       <xs:element name="CreatedAt" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated based on system timestamps">Date/Time an event was created.</xs:documentation>
+          <xs:documentation>Date/Time an event was created.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="ConfirmedAt" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated based on system timestamps">Date/Time an event was confirmed.
-</xs:documentation>
+          <xs:documentation>Date/Time an event was confirmed.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="UpdatedAt" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated based on system timestamps">Date/Time an event was updated.</xs:documentation>
+          <xs:documentation>Date/Time an event was updated.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="StartDate" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated based on system timestamps">The start Date/Time for an event.
-</xs:documentation>
+          <xs:documentation>The start Date/Time for an event.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Location" type="eventLocation">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">The location defined for an event.</xs:documentation>
+          <xs:documentation>The location defined for an event.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Status" type="eventStatus">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated based on a current state of an event">The current status of an event.</xs:documentation>
+          <xs:documentation>The current status of an event.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="LaneInfo" type="laneInfo" minOccurs="0">
@@ -338,7 +336,7 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
     <xs:sequence>
       <xs:element name="SpecialEventCharacteristics" type="xs:string" minOccurs="0">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">The characteristics specific to a Special Event.</xs:documentation>
+          <xs:documentation>The characteristics specific to a Special Event.</xs:documentation>
         </xs:annotation>
         <xs:alternative test="@subtype = 'STADIUM/ARENA_EVENT'" type="stadiumArenaEventType"/>
         <xs:alternative test="@subtype = 'OUTDOOR_EVENT'" type="outdoorEventType"/>
@@ -358,27 +356,25 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
         <xs:sequence>
           <xs:element name="EndDate" type="xs:dateTime">
             <xs:annotation>
-              <xs:documentation source="DYNAC DSM-based user input">The end Date/Time for a planned event.</xs:documentation>
+              <xs:documentation>The end Date/Time for a planned event.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="TypeSpecific">
             <xs:annotation>
               <xs:documentation>Details specific to the type of Planned Event.</xs:documentation>
             </xs:annotation>
-            <xs:alternative test="@type = 'CONSTRUCTION/MAINTENANCE'"
-              type="constructionMaintenanceSpecifics"/>
+            <xs:alternative test="@type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceSpecifics"/>
             <xs:alternative test="@type = 'SPECIAL_EVENT'" type="specialEventSpecifics"/>
           </xs:element>
           <xs:element name="Occurrences">
             <xs:annotation>
-              <xs:documentation source="DYNAC-generated based on DSM-based user input">A list of all occurrences for a single event. Up to 20 per event.</xs:documentation>
+              <xs:documentation>A list of all occurrences for a single event. Up to 20 per event (arbitrary cap).</xs:documentation>
             </xs:annotation>
             <xs:complexType>
               <xs:sequence maxOccurs="20">
-                <!-- NOTE arbitrary cap -->
                 <xs:element name="Occurrence" type="eventOccurence">
                   <xs:annotation>
-                    <xs:documentation source="DYNAC-generated based on DSM-based user input">A single occurrence of a reurring event.</xs:documentation>
+                    <xs:documentation>A single occurrence of a reurring event.</xs:documentation>
                   </xs:annotation>
                 </xs:element>
               </xs:sequence>
@@ -387,7 +383,7 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
         </xs:sequence>
         <xs:attribute name="type" type="plannedEventType" use="required">
           <xs:annotation>
-            <xs:documentation source="DYNAC DSM-based user input">The ascribed type of a planned event.</xs:documentation>
+            <xs:documentation>The ascribed type of a planned event.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -399,13 +395,13 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
     <xs:sequence>
       <xs:element name="ID" type="xs:integer">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">An identifier for the specific weather category, event, and location.</xs:documentation>
+          <xs:documentation>An identifier for the specific weather category, event, and location.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <!-- ensure this is described in the docs -->
       <xs:element name="Category">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">The category of the advisory/watch/warning, (either ADVISORY, WATCH, or WARNING).</xs:documentation>
+          <xs:documentation>The category of the advisory/watch/warning, (either ADVISORY, WATCH, or WARNING).</xs:documentation>
         </xs:annotation>
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -417,23 +413,22 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
       </xs:element>
       <xs:element name="EventType" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">The type of weather event (e.g. Tornado, Hurricane).</xs:documentation>
+          <xs:documentation>The type of weather event (e.g. Tornado, Hurricane).</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Location" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">The specified location of the advistory/watch/warning. This could be statewide or one or more counties.</xs:documentation>
+          <xs:documentation>The specified location of the advistory/watch/warning. This could be a county name, 'STATEWIDE', or many county names.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <!-- county name, 'STATEWIDE', or many county names -->
       <xs:element name="StartDateTime" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">The specified start time for the advisory/watch/warning.</xs:documentation>
+          <xs:documentation>The specified start time for the advisory/watch/warning.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="EndDateTime" type="xs:dateTime">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">The specified end time for the advisory/watch/warning.</xs:documentation>
+          <xs:documentation>The specified end time for the advisory/watch/warning.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -443,17 +438,17 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
     <xs:sequence>
       <xs:element name="HasSpeedRestriction" type="xs:boolean">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">Specifies if there is a speed restriction associated with the event.</xs:documentation>
+          <xs:documentation>Specifies if there is a speed restriction associated with the event.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="IsWithinWorkZone" type="xs:boolean">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">Specifies if the event is within a work zone.</xs:documentation>
+          <xs:documentation>Specifies if the event is within a work zone.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="IsBoreClosureRequired" type="xs:boolean">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">Specifies if there is a bore closure required for the event.</xs:documentation>
+          <xs:documentation>Specifies if there is a bore closure required for the event.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -463,22 +458,21 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
     <xs:sequence>
       <xs:element name="Subtype" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">The ascribed sub-type of the ROADWAY/TRAFFIC Unplanned Event.</xs:documentation>
+          <xs:documentation>The ascribed sub-type of the ROADWAY/TRAFFIC Unplanned Event.</xs:documentation>
         </xs:annotation>
         <xs:alternative test="@type = 'FIRE'" type="roadwayTrafficFireSubtype"/>
         <xs:alternative test="@type = 'ROADWAY_DAMAGE'" type="roadwayTrafficRoadwayDamageSubtype"/>
-        <xs:alternative test="@type = 'ROADWAY_OBSTRUCTION'"
-          type="roadwayTrafficRoadwayObstructionSubtype"/>
+        <xs:alternative test="@type = 'ROADWAY_OBSTRUCTION'" type="roadwayTrafficRoadwayObstructionSubtype"/>
       </xs:element>
       <xs:element name="Characteristics" type="roadwayTrafficCharacteristics" minOccurs="0">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">The specifc characteristics of a ROADWAY/TRAFFIC Unplanned Event.</xs:documentation>
+          <xs:documentation>The specifc characteristics of a ROADWAY/TRAFFIC Unplanned Event.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="type" type="roadwayTrafficType" use="required">
       <xs:annotation>
-        <xs:documentation source="DYNAC DSM-based user input">The type of the Unplanned Event.</xs:documentation>
+        <xs:documentation>The type of the Unplanned Event.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -487,13 +481,13 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
     <xs:sequence>
       <xs:element name="Characteristics" type="advisoryWatchWarningCharacteristics" minOccurs="0">
         <xs:annotation>
-          <xs:documentation source="DYNAC DSM-based user input">The specific characteristics of an ACTS_OF_NATURE Unplanned Event.</xs:documentation>
+          <xs:documentation>The specific characteristics of an ACTS_OF_NATURE Unplanned Event.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="type" type="actsOfNatureType" use="required">
       <xs:annotation>
-        <xs:documentation source="DYNAC DSM-based user input">The type of the Unplanned Event.</xs:documentation>
+        <xs:documentation>The type of the Unplanned Event.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -512,8 +506,7 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
         </xs:sequence>
         <xs:attribute name="category" type="unplannedEventCategory" use="required">
           <xs:annotation>
-            <xs:documentation source="DYNAC DSM-based user input">The category of an Unplanned Event or of a weather event.
-</xs:documentation>
+            <xs:documentation>The category of an Unplanned Event or of a weather event.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -531,23 +524,23 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
       <xs:sequence>
         <xs:element name="UpdateTimestamp" type="xs:dateTime">
           <xs:annotation>
-            <xs:documentation source="DYNAC-generated element at the time of feed publishing">Date/Time when this instance of the feed was published.</xs:documentation>
+            <xs:documentation>Date/Time when this instance of the feed was published.</xs:documentation>
           </xs:annotation>
         </xs:element>
         <xs:element name="Events">
           <xs:annotation>
-            <xs:documentation source="DYNAC-generated, minus unconfirmed events">Includes all published planned/unplanned events.</xs:documentation>
+            <xs:documentation>Includes all published planned/unplanned events.</xs:documentation>
           </xs:annotation>
           <xs:complexType>
             <xs:choice minOccurs="0" maxOccurs="unbounded">
               <xs:element name="PlannedEvent" type="plannedEvent">
                 <xs:annotation>
-                  <xs:documentation source="DYNAC DSM-based user input, minus the type exclusions">A planned event that affects the roadway - e.g. planned construction work.</xs:documentation>
+                  <xs:documentation>A planned event that affects the roadway - e.g. planned construction work.</xs:documentation>
                 </xs:annotation>
               </xs:element>
               <xs:element name="UnplannedEvent" type="unplannedEvent">
                 <xs:annotation>
-                  <xs:documentation source="DYNAC DSM-based user input, minus the type exclusions">An unplanned event that is affecting the roadway - e.g. a crash.</xs:documentation>
+                  <xs:documentation>An unplanned event that is affecting the roadway - e.g. a crash.</xs:documentation>
                 </xs:annotation>
               </xs:element>
             </xs:choice>
