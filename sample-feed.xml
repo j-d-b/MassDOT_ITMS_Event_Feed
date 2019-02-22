@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<EventsFeed xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<EventsFeed xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/C:/Users/Jacob%20Brady/massdot-itms-events-feed/massdot-itms-events-feed.xsd">
     <UpdateTimestamp>2006-05-04T18:13:51.0</UpdateTimestamp>
     <Events>
         <PlannedEvent type="CONSTRUCTION/MAINTENANCE">
@@ -46,12 +48,9 @@
             <UpdatedAt>2006-05-04T18:13:51.0</UpdatedAt>
             <StartDate>2006-05-04T18:13:51.0</StartDate>
             <Location>
-                <Area>
-                    <AreaType>TOWN</AreaType>
-                    <AreaValue>AreaValue0</AreaValue>
-                    <AreaValue>AreaValue1</AreaValue>
-                    <AreaValue>AreaValue2</AreaValue>
-                </Area>
+                <Area type="TOWN">Area0</Area>
+                <Area type="TOWN">Area1</Area>
+                <Area type="TOWN">Area2</Area>
             </Location>
             <Status>ACTIVE</Status>
             <LaneInfo>
@@ -67,42 +66,5 @@
                 </Characteristics>
             </CategorySpecific>
         </UnplannedEvent>
-        <PlannedEvent type="CONSTRUCTION/MAINTENANCE">
-            <Name>Name2</Name>
-            <CreatedAt>2006-05-04T18:13:51.0</CreatedAt>
-            <ConfirmedAt>2006-05-04T18:13:51.0</ConfirmedAt>
-            <UpdatedAt>2006-05-04T18:13:51.0</UpdatedAt>
-            <StartDate>2006-05-04T18:13:51.0</StartDate>
-            <Location>
-                <Point>
-                    <RoadwayName>RoadwayName1</RoadwayName>
-                    <Coordinates>
-                        <Latitude>0</Latitude>
-                        <Longitude>0</Longitude>
-                    </Coordinates>
-                </Point>
-            </Location>
-            <Status>ACTIVE</Status>
-            <LaneInfo>
-                <Direction>Direction2</Direction>
-                <LanesAffected>LanesAffected2</LanesAffected>
-            </LaneInfo>
-            <EndDate>2006-05-04T18:13:51.0</EndDate>
-            <TypeSpecific subtype="ROADWAY_ACTIVITY"/>
-            <Occurrences>
-                <Occurrence>
-                    <StartDateTime>2006-05-04T18:13:51.0</StartDateTime>
-                    <EndDateTime>2006-05-04T18:13:51.0</EndDateTime>
-                </Occurrence>
-                <Occurrence>
-                    <StartDateTime>2006-05-04T18:13:51.0</StartDateTime>
-                    <EndDateTime>2006-05-04T18:13:51.0</EndDateTime>
-                </Occurrence>
-                <Occurrence>
-                    <StartDateTime>2006-05-04T18:13:51.0</StartDateTime>
-                    <EndDateTime>2006-05-04T18:13:51.0</EndDateTime>
-                </Occurrence>
-            </Occurrences>
-        </PlannedEvent>
     </Events>
 </EventsFeed>

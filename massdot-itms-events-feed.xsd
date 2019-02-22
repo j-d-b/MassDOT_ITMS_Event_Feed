@@ -221,12 +221,16 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
       </xs:element>
       <xs:element name="Area" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:documentation>A location for an area event.</xs:documentation>
+          <xs:documentation>The name/value of the specific area (type indicated by the type attribute) impacted by an event.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:simpleContent>
-            <xs:extension base="areaEventType">
-              <xs:attribute name="type" type="xs:string" />
+            <xs:extension base="xs:string">
+              <xs:attribute name="type" type="areaEventType" use="required">
+                <xs:annotation>
+                  <xs:documentation>The type of area region impacted by an event.</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
             </xs:extension>
           </xs:simpleContent>
         </xs:complexType>
@@ -356,7 +360,8 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
             <xs:annotation>
               <xs:documentation>Details specific to the type of Planned Event.</xs:documentation>
             </xs:annotation>
-            <xs:alternative test="@type = 'CONSTRUCTION/MAINTENANCE'" type="constructionMaintenanceSpecifics"/>
+            <xs:alternative test="@type = 'CONSTRUCTION/MAINTENANCE'"
+              type="constructionMaintenanceSpecifics"/>
             <xs:alternative test="@type = 'SPECIAL_EVENT'" type="specialEventSpecifics"/>
           </xs:element>
           <xs:element name="Occurrences">
@@ -455,7 +460,8 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
         </xs:annotation>
         <xs:alternative test="@type = 'FIRE'" type="roadwayTrafficFireSubtype"/>
         <xs:alternative test="@type = 'ROADWAY_DAMAGE'" type="roadwayTrafficRoadwayDamageSubtype"/>
-        <xs:alternative test="@type = 'ROADWAY_OBSTRUCTION'" type="roadwayTrafficRoadwayObstructionSubtype"/>
+        <xs:alternative test="@type = 'ROADWAY_OBSTRUCTION'"
+          type="roadwayTrafficRoadwayObstructionSubtype"/>
       </xs:element>
       <xs:element name="Characteristics" type="roadwayTrafficCharacteristics" minOccurs="0">
         <xs:annotation>
