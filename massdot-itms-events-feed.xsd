@@ -7,6 +7,11 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~ -->
   <!-- general -->
   <xs:simpleType name="eventStatus">
+    <xs:annotation>
+      <xs:documentation>ACTIVE: The event is currently active.
+FUTURE: The event is scheduled to occur in the future.
+TERMINATED: The event has been terminated.</xs:documentation>
+    </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="ACTIVE"/>
       <xs:enumeration value="FUTURE"/>
@@ -15,6 +20,10 @@
   </xs:simpleType>
 
   <xs:simpleType name="areaEventType">
+    <xs:annotation>
+      <xs:documentation>Subdistricts defined at: https://geo-massdot.opendata.arcgis.com/datasets/2bd2e8188d2941c692ca0b882cbd9aea_0
+Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a72f3424082dc5974f001cad8_0</xs:documentation>
+    </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="TOWN"/>
       <xs:enumeration value="COUNTY"/>
@@ -273,7 +282,7 @@
     <xs:sequence>
       <xs:element name="Name" type="xs:string">
         <xs:annotation>
-          <xs:documentation source="DYNAC-generated unique ID for an event">Short name given to an event.</xs:documentation>
+          <xs:documentation>Short name given to an event.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="CreatedAt" type="xs:dateTime">
