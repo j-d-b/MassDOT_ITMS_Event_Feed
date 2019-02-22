@@ -224,18 +224,11 @@ Districts defined at: https://geo-massdot.opendata.arcgis.com/datasets/3399393a7
           <xs:documentation>A location for an area event.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
-          <xs:sequence>
-            <xs:element name="AreaType" type="areaEventType">
-              <xs:annotation>
-                <xs:documentation>The type of area region impacted by an event.</xs:documentation>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="AreaValue" type="xs:string">
-              <xs:annotation>
-                <xs:documentation>The name/value of the specific area (type indicated by AreaType) impacted by an event.</xs:documentation>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
+          <xs:simpleContent>
+            <xs:extension base="areaEventType">
+              <xs:attribute name="type" type="xs:string" />
+            </xs:extension>
+          </xs:simpleContent>
         </xs:complexType>
       </xs:element>
     </xs:choice>
