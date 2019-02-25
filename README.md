@@ -1,4 +1,4 @@
-# MassDOT ITMS Events Feed
+# MassDOT ITMS Event Feed
 XML Events Feed Documenation for MassDOT's ITMS.
 
 ## Directory
