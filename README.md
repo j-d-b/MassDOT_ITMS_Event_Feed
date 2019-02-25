@@ -1,5 +1,5 @@
 # MassDOT ITMS Event Feed
-XML Events Feed Documenation for MassDOT's ITMS.
+XML Event Feed schema, sample, and documentation, and for MassDOT's ITMS.
 
 ## Directory
 * `MassDOT_ITMS_Event_Feed.xsd` describes the shape/type of the XML feed, with helpful annotations.
